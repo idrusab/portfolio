@@ -1,0 +1,259 @@
+@media (prefers-reduced-motion: no-preference) {
+  body * {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  padding-top: 80px; /* Adjust this value to match the height of your fixed header */
+  background: #f5f6f7;
+  color: #1b1b32;
+  font-family: Helvetica, Arial, sans-serif;
+  margin: 0;
+}
+/*
+header {
+  width: 100%;
+  height: 80px;
+  background-color: #980000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+}
+*/
+main {
+  position: relative; /* Add this line */
+}
+
+header {
+  width: 100%;
+  height: 80px;
+  background-color: #980000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 1000; /* Set a high z-index to ensure the header stays on top */
+}
+
+#header-img {
+  width: max(100px, 10vw);
+  background-color: #980000;
+  aspect-ratio: 10 / 5;
+  padding: 0.4rem;
+}
+
+@media (max-width: 650px) {
+  .header-img {
+    margin: 0 auto;
+  }
+}
+
+#navbar {
+  position: fixed;
+  top: 15px;
+  right: 0; /* Align the navbar to the right */
+  width: 50%; /* Set the width to 50% to center it */
+  max-width: 300px; /* Limit the maximum width */
+  background-color: #980000; /* Set a background color for visibility */
+  z-index: 1000; /* Set a high z-index to ensure the navbar stays on top */
+}
+
+nav {
+  width: 100%; /* Adjust the width to 100% */
+  height: 50px;
+  font-weight: 500;
+}
+
+nav > ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-inline-start: 0;
+  margin-block: 0;
+  height: 100%;
+}
+
+nav > ul > li {
+  color: #dfdfe2;
+  margin: 0;
+  padding: 20px 0;
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  transition: color 0.3s;
+}
+
+nav > ul > li::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  background-color: white;
+  bottom: 0;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s;
+}
+
+nav > ul > li:hover::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+nav > ul > li:hover {
+  color: white;
+  cursor: pointer;
+}
+
+li > a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (max-width: 650px) {
+  nav {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 50px;
+  }
+  nav li {
+    padding-bottom: 5px;
+  }
+}
+
+@media (max-width: 650px) {
+  nav > ul {
+    flex-direction: column;
+  }
+}
+
+#welcome-section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* ... (previous styles) */
+
+#welcome-section h1 {
+  font-size: 3em;
+  color: #ff5733;
+  margin-bottom: 10px;
+  opacity: 0;
+  transform: translateX(-100vw); /* Start outside the viewport on the left */
+  animation: slideInLeft 1s forwards, pause 2s 1s forwards infinite; /* Use the slideInLeft animation */
+}
+
+#welcome-section p {
+  font-size: 1.5em;
+  color: #1b1b32;
+  margin-top: 0;
+  opacity: 0;
+  transform: translateX(100vw); /* Start outside the viewport on the right */
+  animation: slideInRight 1s forwards, pause 2s 1s forwards infinite; /* Use the slideInRight animation */
+}
+
+@keyframes slideInLeft {
+  to {
+    opacity: 1; /* Fade in */
+    transform: translateX(0); /* Move to the center */
+  }
+}
+
+@keyframes slideInRight {
+  to {
+    opacity: 1; /* Fade in */
+    transform: translateX(0); /* Move to the center */
+  }
+}
+
+@keyframes pause {
+  0%, 100% {
+    opacity: 1;
+  }
+  50.01% {
+    opacity: 1;
+  }
+}
+
+
+#projects {
+  text-align: center;
+  padding-top: 80px; /* Adjust this value as needed */
+}
+
+.project-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 800px; /* Set a maximum width for the project container */
+  margin: 0 auto; /* Center the container on the page */
+}
+
+.project {
+  position: relative;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden; /* Ensure the image doesn't overflow */
+}
+
+.project img {
+  width: 100%; /* Ensure the image fills the entire box */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Remove any extra spacing below the image */
+}
+
+.project a {
+  display: block;
+}
+
+.project .project-tile {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1; /* Place the title above the image */
+  color: white; /* Text color for the title */
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  font-size: 24px; /* Adjust the font size */
+  font-weight: bold; /* Make the font bold */
+  border-radius: 4px; /* Optional: Add border-radius for rounded corners */
+  width: 100%; /* Cover the entire width of the box */
+  text-align: center; /* Center the text horizontally */
+}
+
+.contact-section {
+  height: 100vh; /* Set the contact section to occupy the full viewport height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.contact-section h2 {
+  font-family: 'Arial', sans-serif; /* Change font family */
+  font-size: 2.5em; /* Adjust font size as needed */
+  color: #2e4d64; /* Change text color */
+  margin-bottom: 10px;
+}
+
+.contact-section p {
+  font-family: 'Verdana', sans-serif; /* Change font family */
+  font-size: 1.2em; /* Adjust font size as needed */
+  color: #65737e;
